@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>上传视频弹窗</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<style type="text/css">
+body,html{font-family:PingFangSC-Regular,Helvetica,STHeiti STXihei,Microsoft YaHei,Microsoft JhengHei,Arial}
+li{list-style:none}
+a{text-decoration:none}
+*{margin:0;padding:0}
+.video_popup_bg{position:fixed;width:100%;height:100%;background:#ccc}
+.video_popup{width:80%;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;border-radius:.1rem}
+.popup_nav{display:flex;justify-content:space-around;line-height:.84rem;border-bottom:1px solid #ccc;width:90%;margin:0 auto}
+.popup_nav>li{font-size:0.32rem}
+.current{border-bottom:1px solid  #649dfd}
+.nav_wrap>li{display:none}
+.content_b,.content_a{text-align:center;margin-top:.4rem}
+.content_b>h2,.content_a>h2{font-size:.32rem;margin-top:.2rem}
+.content_b>p,.content_a>p{font-size:.28rem;line-height:0.7rem}
+.content_a>span{border-radius:.08rem;font-size:.32rem;background:#649dfd;padding:.1rem 0;color:#fff;width:3.4rem;margin:0 auto;display:block}
+.video_link{border:1px solid #ccc;height:.65rem;width:80%;margin:0 auto;border-radius:.1rem}
+.video_link>input{display:inline-block;line-height:.67rem;padding-left:.2rem;width:74%;outline:none;border:none;float:left;border-radius:.1rem 0 0 .1rem}
+.video_link>button{display:inline-block;line-height:.67rem;outline:none;border:none;float:right;width:20%;border-radius:0 .1rem .1rem 0;color:#fff;background:#649dfd}
+.content_b>p.text{font-size:.2rem;line-height:0.4rem;margin-top:.2rem;padding-bottom:1rem}
+.close{position:absolute;right:0.25rem;top:.3rem;width:.3rem}
+</style>
+</head>
+<body>
+<div class="video_popup_bg">
+	<div class="video_popup">
+		<img src="cha.png" class="close" onclick="_hide('video_popup_bg')">
+		<ul class="popup_nav">
+			<li class="current">上传视频</li>
+			<li>压缩视频</li>
+		</ul>
+		<ul class="nav_wrap">
+			<li style="display: block;">
+				<div class="content_a">
+					<h2>A、直接上传视频</h2>
+					<p>格式为mp3,大小8M以内</p>
+					<span>上传mp4</span>
+				</div>
+				<div class="content_b ">
+					<h2>A、直接上传视频</h2>
+					<p>格式为mp3,大小8M以内</p>
+					<div class="video_link">
+						<input type="text" name="" placeholder="请在此处粘贴视频链接"><button>提交</button>
+					</div>
+					<p class="text">使用电脑访问<a href="#">优酷</a>/<a href="#">腾讯视频</a>/<a href="#">哔哩哔哩</a>,<br>上传视频生成视频链接</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+// 获取手机屏幕的宽／高，计算出html设置的font-size 参数
+    (function(){
+        var calc = function(){
+            var docElement = document.documentElement;
+            var clientWidthValue = docElement.clientWidth > 667 ? 667 : docElement.clientWidth;
+            docElement.style.fontSize = 50*(clientWidthValue/375) + 'px';
+        }
+        calc();
+        window.addEventListener('resize',calc);
+    })();
+
+// tab切换
+	$(function() {
+    $(".popup_nav li").each(function(index) { //带参数遍历各个选项卡
+        $(this).click(function() { //注册每个选卡的单击事件
+            $(".popup_nav li.current").removeClass("current"); //移除已选中的样式
+            $(this).addClass("current"); //增加当前选中项的样式
+            //显示选项卡对应的内容并隐藏未被选中的内容
+            $(".nav_wrap li:eq(" + index + ")").show()
+            .siblings().hide();
+        });
+    });
+})
+	// --显示隐藏--      
+  function _show(cld){
+  	$("."+cld).show();
+	}
+  function _hide(cld){
+  	$('.'+cld).hide();
+  }
+
+</script>
+</html>
+
